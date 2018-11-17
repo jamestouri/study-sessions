@@ -1,7 +1,7 @@
 import {OPEN_MODAL, CLOSE_MODAL} from '../actions/actions.jsx';
 import merge from 'lodash/merge';
 
-export default modalReducer = (state = {}, action) => {
+const modalReducer = (state = {}, action) => {
   let newState = merge({}, state)
   switch (action.type) {
     case OPEN_MODAL:
@@ -12,3 +12,5 @@ export default modalReducer = (state = {}, action) => {
       return state;
   }
 }
+
+export default modalReducer;
