@@ -19,13 +19,14 @@ class App extends Component {
 
   handleChange(field) {
     return (e) => {
-      this.setState({field}: e.target.value)
+      this.setState({[field]: e.target.value})
     }
   }
   handleSubmit(e) {
     e.preventDefault()
     APIUTIL.createComment(this.state.text).then(() => this.props.history.push('/'))
   }
+
   render() {
     return (
       <div className="App">

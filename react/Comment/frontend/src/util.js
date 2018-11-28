@@ -1,19 +1,19 @@
 export const createComment = comment => {
-  $.ajax({
+  return $.ajax({
     method: 'POST',
     url: 'api/comments'
   })
 }
 
 export const fetchComments = () => {
-  $.ajax({
+  return $.ajax({
     method: 'GET',
     url: 'api/comments'
   })
 }
 
 export const deleteComment = id => {
-  $.ajax({
+  return $.ajax({
     method: 'DESTROY',
     url: `api/comments/${id}`
   })
