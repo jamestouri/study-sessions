@@ -1,11 +1,11 @@
 class Api::CommentsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     @comments = Comment.all
   end
 
   def create
-    debugger
     @comment = Comment.new(comment_params)
     if @comment.save
       render :index
