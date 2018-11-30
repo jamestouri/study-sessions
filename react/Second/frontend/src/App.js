@@ -19,7 +19,7 @@ class App extends Component {
 
   componentWillReceiveProps(newProps) {
     if(newProps.comments) {
-      this.setState({comments: newProps.comments})
+      this.setState({comments: newProps.comments.responseJSON})
     }
   }
 
@@ -38,8 +38,8 @@ class App extends Component {
   }
 
   showComment(){
-    if(this.state.comment) {
-      this.state.comments.map(el => {
+    if(this.state.comments) {
+      this.state.comments.responseJSON.map(el => {
         return (
           <li>{el}</li>
         )
@@ -49,6 +49,7 @@ class App extends Component {
 
 
   render() {
+
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
