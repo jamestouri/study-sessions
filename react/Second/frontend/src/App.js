@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import * as APIUTIL from './util';
 
 class App extends Component {
   constructor(props) {
@@ -13,51 +12,43 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const comments = APIUTIL.fetchComments()
-    this.setState({comments: comments});
+
   }
 
-  componentWillReceiveProps(newProps) {
-    if(newProps.comments) {
-      this.setState({comments: newProps.comments.responseJSON})
-    }
-  }
+
 
   handleChange(field) {
+    console.log(this.state)
     return (e) => {
       this.setState({[field]: e.target.value})
     }
   }
+
   handleSubmit(e) {
     e.preventDefault()
-    APIUTIL.createComment(this.state.text).then(() => this.props.history.push('/'))
+
   }
 
   handleDelete(el) {
-    APIUTIL.deleteComment(el.id).then(() => this.props.history.push('/'))
-  }
-
-  showComment(){
-    if(this.state.comments) {
-      this.state.comments.responseJSON.map(el => {
-        return (
-          <li>{el}</li>
-        )
-      })
-    }
   }
 
 
   render() {
-
+    if (this.state.comments.length < 1) {
+      return null;
+    }
+    const objectComments = Object.values(this.state.comments)
+    const comments = objectComments.map(el => (
+      <li>{el.text}</li>
+    ))
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
-          <input type='text' onChange={this.handleChange('text')} autoFocus/>
+          <input type='text' onChange={this.handleChange('text')} value={this.state.text}autoFocus/>
           <input type="submit" value="Submit"/>
         </form>
         <ul>
-          {this.showComment()}
+          {comments}
         </ul>
       </div>
     );
