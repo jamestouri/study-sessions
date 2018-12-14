@@ -6,7 +6,8 @@ const Event = require("../../models/Event")
 const validateEventInput = require("../../validation/event")
 
 router.get("/", (req, res) => {
-  Event.find()
+  let event = mongoose.models.events;
+  event.find()
     .sort({date: -1 })
     .then(events => res.json(events))
 });

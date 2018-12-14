@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
@@ -13,6 +12,13 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    axios.get(`api/events`)
+      .then(events => {
+        this.setState({events: events})
+      })
+  }
+
   handleChange(field) {
     return e => {
       this.setState({[field]: e.target.value})
@@ -21,7 +27,6 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-
     const event = {
       text: this.state.text
     }
@@ -29,7 +34,16 @@ class App extends Component {
     axios.post('/api/events/create', event)
       .then(res => console.log(res.data))
   }
+
   render() {
+    if(this.state.events.length === 0) {
+      return null;
+    }
+    const theEvents = Object.values(this.state.events);
+
+    const allEvents = theEvents.map(theEvent => (
+      <li>theEvent</li>
+    ))
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
