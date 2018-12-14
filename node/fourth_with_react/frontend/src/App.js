@@ -14,8 +14,8 @@ class App extends Component {
 
   componentDidMount() {
     axios.get(`api/events`)
-      .then(events => {
-        this.setState({events: events})
+      .then(response => {
+        this.setState({events: response.data})
       })
   }
 
@@ -23,6 +23,7 @@ class App extends Component {
     return e => {
       this.setState({[field]: e.target.value})
     }
+
   }
 
   handleSubmit(e) {
@@ -32,7 +33,9 @@ class App extends Component {
     }
 
     axios.post('/api/events/create', event)
-      .then(res => console.log(res.data))
+      .then(res => this.setState(currentState => ({
+        events: currentState.events.concat(res.data)
+      })))
   }
 
   render() {
@@ -42,7 +45,7 @@ class App extends Component {
     const theEvents = Object.values(this.state.events);
 
     const allEvents = theEvents.map(theEvent => (
-      <li>theEvent</li>
+      <li>{theEvent.text}</li>
     ))
     return (
       <div className="App">
@@ -50,6 +53,9 @@ class App extends Component {
           <input type="text" value={this.state.text} onChange={this.handleChange('text')}/>
           <input type="submit" value="Submit"/>
         </form>
+        <ul>
+          {allEvents}
+        </ul>
       </div>
     );
   }
