@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -36,7 +35,9 @@ class App extends Component {
       .then(res => this.setState(currentState => ({
         events: currentState.events.concat(res.data)
       })))
+      .then(() => this.setState({text: ''}))
   }
+
 
   render() {
     if(this.state.events.length === 0) {
@@ -45,7 +46,9 @@ class App extends Component {
     const theEvents = Object.values(this.state.events);
 
     const allEvents = theEvents.map(theEvent => (
-      <li>{theEvent.text}</li>
+      <a href={theEvent._id}>
+        {theEvent.text}
+      </a>
     ))
     return (
       <div className="App">

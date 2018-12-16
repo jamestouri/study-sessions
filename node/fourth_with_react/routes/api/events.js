@@ -13,7 +13,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  Event.findbyId(req.params.id)
+  let event = mongoose.models.events;
+  event.findbyId(req.params.id)
     .then(event => res.json(event))
 })
 

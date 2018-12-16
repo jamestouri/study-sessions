@@ -35,7 +35,7 @@
 import collections
 def minIncrementForUnique(A):
     arr = collections.Counter(A)
-    return arr 
+    
 
 print(minIncrementForUnique([1, 1, 2, 2, 3, 7]))
 # 1, 1, 2, 2, 3, 7
