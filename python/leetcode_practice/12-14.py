@@ -35,9 +35,9 @@
 import collections
 def minIncrementForUnique(A):
     arr = collections.Counter(A)
-    
 
-print(minIncrementForUnique([1, 1, 2, 2, 3, 7]))
+
+# print(minIncrementForUnique([1, 1, 2, 2, 3, 7]))
 # 1, 1, 2, 2, 3, 7
 # 6
 # 1, 2, 2, 2
@@ -60,24 +60,27 @@ def wordSubsets(A, B):
                  sub_chars[key] = max(val, sub_chars[key])
              else:
                  sub_chars[key] = val
-
      for i in range(len(A)):
          temp_chars = {}
          for j in range(len(A[i])):
              c = A[i][j]
              if c in sub_chars:
-                 temp_chars[c] += 1
+                 if c in temp_chars:
+                     temp_chars[c] += 1
+                 else:
+                     temp_chars[c] = 1
+         count = 1
+
+         for k, v in sub_chars.items():
+             if k in temp_chars:
+                 if v > temp_chars[k]:
+                     count = 0
+                     break
              else:
-                 temp_chars[c] = 1
-         count = 0
-         print(temp_chars)
-         print(sub_chars)
-         for k, v in temp_chars.items():
-             if v != sub_chars[k]:
-                 count -= 1
-             count += 1
-         if count == len(temp_chars):
-             res.append(A[i])
+                 count = 0
+                 break
+         if count == 1:
+            res.append(A[i])
      return res
 
 
@@ -85,7 +88,6 @@ def wordSubsets(A, B):
 # A = ["amazon","apple","facebook","google","leetcode"]
 # B = ["e","o"]
 # Output: ["facebook","google","leetcode"]
-# print(wordSubsets(A, B))
 # Input: A = ["amazon","apple","facebook","google","leetcode"], B = ["l","e"]
 # Output: ["apple","google","leetcode"]
 # Example 3:
@@ -94,5 +96,8 @@ def wordSubsets(A, B):
 # Output: ["facebook","google"]
 
 #
-# Input: A = ["amazon","apple","facebook","google","leetcode"], B = ["ec","oc","ceo"]
+A = ["amazon","apple","facebook","google","leetcode"]
+B = ["ec","oc","ceo"]
 # Output: ["facebook","leetcode"]
+
+print(wordSubsets(A, B))
