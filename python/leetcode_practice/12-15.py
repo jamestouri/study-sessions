@@ -28,17 +28,6 @@ def findFrequentTreeSum(root):
     return res
 
 
-# Examples 1
-# Input:
-#
-#   5
-#  /  \
-# 2   -3
-# return [2, -3, 4], since all the values happen only once, return all of them in any order.
-# Examples 2
-# Input:
-#
-#   5
-#  /  \
-# 2   -5
-#
+
+def findRedundantConnection(edges):
+    pass

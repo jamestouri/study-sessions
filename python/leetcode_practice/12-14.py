@@ -1,16 +1,48 @@
+# def minIncrementForUnique(A):
+#     given_set = set()
+#     res = 0
+#     for i in range(len(A)):
+#         if A[i] in given_set:
+#             while A[i] in given_set:
+#                 res += 1
+#                 A[i] += 1
+#         given_set.add(A[i])
+#     return res
+
+# def minIncrementForUnique(A):
+#     arr = sorted(A)
+#     res = 0
+#     for i in range(1, len(arr)):
+#         if arr[i] == arr[i - 1]:
+#             res += 1
+#         elif arr[i] == arr[i - 1] + 1:
+#             res *= 2
+#     return res
+
+# def minIncrementForUnique(A):
+#     A = sorted(A)
+#     given_set = set()
+#     res = 0
+#     given_set.add(A[0])
+#     for i in range(1, len(A)):
+#         if A[i] in given_set or A[i] == A[i - 1]:
+#             while A[i] in given_set:
+#                 res += 1
+#                 A[i] += 1
+#         given_set.add(A[i])
+#     return res
+
+import collections
 def minIncrementForUnique(A):
-    given_set = set()
-    res = 0
-    for i in range(len(A)):
-        if A[i] in given_set:
-            while A[i] in given_set:
-                res += 1
-                A[i] += 1
-        given_set.add(A[i])
-    return res
+    arr = collections.Counter(A)
+    return arr 
 
-
-# print(minIncrementForUnique([7,2,1,2,1,3]))
+print(minIncrementForUnique([1, 1, 2, 2, 3, 7]))
+# 1, 1, 2, 2, 3, 7
+# 6
+# 1, 2, 2, 2
+# 1, 2, 2
+#
 
 def wordSubsets(A, B):
      sub_chars = {}
@@ -50,10 +82,10 @@ def wordSubsets(A, B):
 
 
 
-A = ["amazon","apple","facebook","google","leetcode"]
-B = ["e","o"]
+# A = ["amazon","apple","facebook","google","leetcode"]
+# B = ["e","o"]
 # Output: ["facebook","google","leetcode"]
-print(wordSubsets(A, B))
+# print(wordSubsets(A, B))
 # Input: A = ["amazon","apple","facebook","google","leetcode"], B = ["l","e"]
 # Output: ["apple","google","leetcode"]
 # Example 3:
