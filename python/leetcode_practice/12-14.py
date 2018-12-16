@@ -44,44 +44,44 @@ def minIncrementForUnique(A):
 # 1, 2, 2
 #
 
-def wordSubsets(A, B):
-     sub_chars = {}
-     res = []
-     for i in range(len(B)):
-         temp = {}
-         for j in range(len(B[i])):
-             char = B[i][j]
-             if char in temp:
-                 temp[char] += 1
-             else:
-                 temp[char] = 1
-         for key, val in temp.items():
-             if key in sub_chars:
-                 sub_chars[key] = max(val, sub_chars[key])
-             else:
-                 sub_chars[key] = val
-     for i in range(len(A)):
-         temp_chars = {}
-         for j in range(len(A[i])):
-             c = A[i][j]
-             if c in sub_chars:
-                 if c in temp_chars:
-                     temp_chars[c] += 1
-                 else:
-                     temp_chars[c] = 1
-         count = 1
-
-         for k, v in sub_chars.items():
-             if k in temp_chars:
-                 if v > temp_chars[k]:
-                     count = 0
-                     break
-             else:
-                 count = 0
-                 break
-         if count == 1:
-            res.append(A[i])
-     return res
+# def wordSubsets(A, B):
+#      sub_chars = {}
+#      res = []
+#      for i in range(len(B)):
+#          temp = {}
+#          for j in range(len(B[i])):
+#              char = B[i][j]
+#              if char in temp:
+#                  temp[char] += 1
+#              else:
+#                  temp[char] = 1
+#          for key, val in temp.items():
+#              if key in sub_chars:
+#                  sub_chars[key] = max(val, sub_chars[key])
+#              else:
+#                  sub_chars[key] = val
+#      for i in range(len(A)):
+#          temp_chars = {}
+#          for j in range(len(A[i])):
+#              c = A[i][j]
+#              if c in sub_chars:
+#                  if c in temp_chars:
+#                      temp_chars[c] += 1
+#                  else:
+#                      temp_chars[c] = 1
+#          count = 1
+#
+#          for k, v in sub_chars.items():
+#              if k in temp_chars:
+#                  if v > temp_chars[k]:
+#                      count = 0
+#                      break
+#              else:
+#                  count = 0
+#                  break
+#          if count == 1:
+#             res.append(A[i])
+#      return res
 
 
 
@@ -96,8 +96,14 @@ def wordSubsets(A, B):
 # Output: ["facebook","google"]
 
 #
-A = ["amazon","apple","facebook","google","leetcode"]
-B = ["ec","oc","ceo"]
+# A = ["amazon","apple","facebook","google","leetcode"]
+# B = ["ec","oc","ceo"]
 # Output: ["facebook","leetcode"]
-
-print(wordSubsets(A, B))
+#
+# print(wordSubsets(A, B))
+def combinationSum(candidates, target):
+    lower = 0
+    upper = len(candidates)
+    while lower < upper:
+        mid = (upper + lower) / 2
+        
