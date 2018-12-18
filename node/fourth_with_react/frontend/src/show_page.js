@@ -9,18 +9,20 @@ class ShowPage extends React.Component {
       theEvent: ''
     }
   }
-
-  componentDidMount(){
-    axios.get(`${this.state.id}`)
-      .then(respone => this.setState({response.data}))
-  }
+  //
+  // componentDidMount(){
+  //   axios.get(`api/events/${this.state.id}`)
+  //     .then(respone => this.setState({response.data}))
+  // }
 
   render() {
     if(!this.state.theEvent) {
       return null;
     }
     return (
-      <h1>{this.state.theEvent.text}</h1>
+      <h1>Hi</h1>
     )
   }
 }
+
+export default ShowPage;

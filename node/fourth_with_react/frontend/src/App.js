@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import {Link, Route} from 'react-router-dom';
+import ShowPage from './show_page';
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -46,12 +49,13 @@ class App extends Component {
     const theEvents = Object.values(this.state.events);
 
     const allEvents = theEvents.map(theEvent => (
-      <a href={theEvent._id}>
+      <Link to={`api/events/${theEvent._id}`}>
         {theEvent.text}
-      </a>
+      </Link>
     ))
     return (
       <div className="App">
+        <Route path="/api/events/:id" component={ShowPage} />
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.text} onChange={this.handleChange('text')}/>
           <input type="submit" value="Submit"/>
