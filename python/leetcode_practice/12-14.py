@@ -31,15 +31,22 @@
 #                 A[i] += 1
 #         given_set.add(A[i])
 #     return res
-
+#
 import collections
 def minIncrementForUnique(A):
-    arr = collections.Counter(A)
+    count = collections.Counter(A)
+    taken = []
+    res = 0
+    for i in range(100000):
+        if count[i] >= 2:
+            taken.extend([i] * (count[i] - 1))
+        elif taken and count[i] == 0:
+            res += i - taken.pop()
+    return res
 
 
-# print(minIncrementForUnique([1, 1, 2, 2, 3, 7]))
-# 1, 1, 2, 2, 3, 7
-# 6
+print(minIncrementForUnique([3,2,1,2,1,7]))
+
 # 1, 2, 2, 2
 # 1, 2, 2
 #
@@ -106,4 +113,3 @@ def combinationSum(candidates, target):
     upper = len(candidates)
     while lower < upper:
         mid = (upper + lower) / 2
-        
