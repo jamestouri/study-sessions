@@ -1,33 +1,37 @@
 def findFrequentTreeSum(root):
     res = []
     hash_table = {}
-    stack = []
-    stack.append((root, []))
-    hash_table[root] = root.val
-    while stack:
-        node, prev = stack.pop()
-        if prev is not None:
-            for n in prev:
-                hash_table[n] += node.val
-        if node.left:
-            stack.append((node.left, prev.append(node)))
+    def sum_helper(node, arr = []):
+        if not node.left and not node.right:
+            if node.val in hash_table:
+                hash_table[node.val] += 1
+            else:
+                hash_table[node.val] = 1
+            for n in arr:
+                num = n + node.val
+                if num in hash_table:
+                    hash_table[num] += 1
+                else:
+                    hash_table[num] = 1
+            return
+        arr.append(node.val)
         if node.right:
-            stack.append((node.right, prev.append(node)))
+            for i in range(len(arr)):
+                arr[i] += node.right.val
+        if node.left:
+            for i in range(len(arr)):
+                arr[i] += node.left.val
+        if node.right:
+            arr.append(node.right.val)
+            sum_helper(node.right, arr)
+        if node.left:
+            arr.append(node.left.val)
+            sum_helper(node.left, arr)
+    sum_helper(root)
     max_value = 0
-    new_hash = {}
-    for k, v in hash_table.items():
-        if v in new_hash:
-            new_hash[v] += 1
-        else:
-            new_hash[v] = 1
-    for k, v in hash_table.items():
-        max_value = max(max_value, v)
+    for key, val in hash_table.items():
+        max_value = max(val, max_value)
     for k, v in hash_table.items():
         if v == max_value:
             res.append(k)
     return res
-
-
-
-def findRedundantConnection(edges):
-    pass
