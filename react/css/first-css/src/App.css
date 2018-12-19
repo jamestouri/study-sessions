@@ -28,16 +28,7 @@
   justify-content: space-between;
 }
 
-.list-for-top li {
-  list-style: none;
-  font-family: monospace;
-  border: 1px solid white;
-  padding: 10px;
-}
 
-.sizing-for-list {
-  width: 800px;
-}
 
 @keyframes App-logo-spin {
   from {
