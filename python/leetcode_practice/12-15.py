@@ -55,3 +55,15 @@ def findFrequentTreeSum(root):
         if val == max_count:
             arr.append(key)
     return arr
+
+
+def maximumSwap(num):
+    arr = str(num).split()
+    max_val = int(arr[0])
+    max_idx = 0
+    for i in range(len(arr)):
+        if max_val < int(arr[i]):
+            max_val = int(arr[i])
+            max_idx = i
+    
+print(maximumSwap(2273))
