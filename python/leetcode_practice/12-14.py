@@ -108,8 +108,5 @@ print(minIncrementForUnique([3,2,1,2,1,7]))
 # Output: ["facebook","leetcode"]
 #
 # print(wordSubsets(A, B))
-def combinationSum(candidates, target):
-    lower = 0
-    upper = len(candidates)
-    while lower < upper:
-        mid = (upper + lower) / 2
+def reorganizeString(self, S):
+    
