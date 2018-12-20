@@ -108,5 +108,3 @@ print(minIncrementForUnique([3,2,1,2,1,7]))
 # Output: ["facebook","leetcode"]
 #
 # print(wordSubsets(A, B))
-def reorganizeString(self, S):
-    
