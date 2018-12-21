@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventIndex from './components/event_index'
+import ShowEvent from './components/show_event'
 import './App.css';
 import {
   Route,
@@ -13,6 +14,7 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route path="/api/events" component={EventIndex}/>
+          <Route path="/api/events/:_id" component={ShowEvent}/>
         </Switch>
       </HashRouter>
     );

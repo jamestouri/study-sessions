@@ -20,7 +20,6 @@ router.get('/:id', (req, res) => {
 
 router.post('/create', (req, res) => {
     const event = mongoose.models.events;
-
     const newEvent = new event({
       body: req.body.body
     })
