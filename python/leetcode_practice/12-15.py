@@ -37,33 +37,65 @@
 #     return res
 
 import collections
-def findFrequentTreeSum(root):
-    res = []
-    arr = []
-    def sum_helper(node):
-        if node is None:
-            return 0
-        value = node.val + sum_helper(node.left) + sum_helper(node.right)
-        res.append(value)
-            return value
-    sum_helper(root)
-    count = collections.Counter(res)
-    max_count = 0
-    for k, v in count.items():
-        max_count = max(max_count, v)
-    for key, val in count.items():
-        if val == max_count:
-            arr.append(key)
-    return arr
+# def findFrequentTreeSum(root):
+#     res = []
+#     arr = []
+#     def sum_helper(node):
+#         if node is None:
+#             return 0
+#         value = node.val + sum_helper(node.left) + sum_helper(node.right)
+#         res.append(value)
+#             return value
+#     sum_helper(root)
+#     count = collections.Counter(res)
+#     max_count = 0
+#     for k, v in count.items():
+#         max_count = max(max_count, v)
+#     for key, val in count.items():
+#         if val == max_count:
+#             arr.append(key)
+#     return arr
 
 
+# def maximumSwap(num):
+    # string = list(str(num))
+    # arr = sorted(string)
+    # res = ''
+    # for i in range(len(string)):
+    #     if string[i] == arr[-1]:
+    #         arr.pop()
+    #     else:
+    #         n = i + 1
+    #         while n < len(string) and string[n] != arr[-1]:
+    #             n += 1
+    #         string[i], string[n] = string[n], string[i]
+    #         break
+    # for i in range(len(string)):
+    #     res += string[i]
+    # return int(res)
 def maximumSwap(num):
-    arr = str(num).split()
-    max_val = int(arr[0])
-    max_idx = 0
-    for i in range(len(arr)):
-        if max_val < int(arr[i]):
-            max_val = int(arr[i])
-            max_idx = i
-    
-print(maximumSwap(2273))
+    listed = list(str(num))
+    counted = collections.Counter(listed)
+    sort_keys = sorted(counted)
+    res = ''
+    for i in range(len(listed)):
+        if listed[i] == sort_keys[-1]:
+            if counted[sort_keys[-1]] > 1:
+                counted[sort_keys[-1]] -= 1
+            elif counted[sort_keys[-1]] == 1:
+                sort_keys.pop()
+        else:
+            n = i + 1
+            while n < len(listed):
+                if counted[listed[n]] == sort_keys[-1]:
+                    if counted[listed[n]] > 1:
+                        counted[listed[n]] -= 1
+                    else:
+                        listed[i], listed[n] = listed[n], listed[i]
+                        break
+                n += 1
+    for i in range(len(listed)):
+        res += listed[i]
+    return int(res)
+
+print(maximumSwap(2736))
