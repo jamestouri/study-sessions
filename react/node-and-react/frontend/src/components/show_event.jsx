@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import '../App.css';
 
 class ShowEvent extends React.Component {
   constructor(props) {
@@ -11,17 +12,19 @@ class ShowEvent extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`api/event/${this.props._id}`)
-      .then(res => this.setState({theEvent: res.data.body}))
+    axios.get(`api/events/${this.props.match.params._id}`)
+       .then(res => this.setState({theEvent: res.data}))
+
   }
 
   render() {
     if (this.state.theEvent === '') {
       return null;
     }
+
     return(
       <div>
-        {this.state.theEvent}
+        <h1 className="for-show">{this.state.theEvent.body}</h1>
       </div>
     )
   }

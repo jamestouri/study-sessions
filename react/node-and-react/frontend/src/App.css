@@ -39,3 +39,9 @@ ul li {
   font-family: monospace;
   font-size: 14px;
 }
+
+for-show {
+  font-family: monospace;
+  border: 1px solid black;
+  color: blue
+}

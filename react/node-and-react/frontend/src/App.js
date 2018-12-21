@@ -13,8 +13,8 @@ class App extends Component {
     return (
       <HashRouter>
         <Switch>
-          <Route path="/api/events" component={EventIndex}/>
-          <Route path="/api/events/:_id" component={ShowEvent}/>
+          <Route exact path="/api/events" component={EventIndex}/>
+          <Route exact path="/api/events/:_id" component={ShowEvent}/>
         </Switch>
       </HashRouter>
     );
