@@ -74,28 +74,13 @@ import collections
     #     res += string[i]
     # return int(res)
 def maximumSwap(num):
-    listed = list(str(num))
-    counted = collections.Counter(listed)
-    sort_keys = sorted(counted)
-    res = ''
-    for i in range(len(listed)):
-        if listed[i] == sort_keys[-1]:
-            if counted[sort_keys[-1]] > 1:
-                counted[sort_keys[-1]] -= 1
-            elif counted[sort_keys[-1]] == 1:
-                sort_keys.pop()
-        else:
-            n = i + 1
-            while n < len(listed):
-                if counted[listed[n]] == sort_keys[-1]:
-                    if counted[listed[n]] > 1:
-                        counted[listed[n]] -= 1
-                    else:
-                        listed[i], listed[n] = listed[n], listed[i]
-                        break
-                n += 1
-    for i in range(len(listed)):
-        res += listed[i]
-    return int(res)
+    A = map(int, str(num))
+    last = {x: i for i, x in enumerate(A)}
+    for i, x in enumerate(A):
+        for d in xrange(9, x, -1):
+            if last.get(d, None) > i:
+                A[i], A[last[d]] = A[last[d]], A[i]
+                return int("".join(map(str, A)))
+    return num
 
 print(maximumSwap(2736))
