@@ -21,15 +21,10 @@ def setZeroes(matrix):
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if matrix[i][j] == 0:
-                if i not in i_set and j not in j_set:
-                    i_set.add(i)
-                    j_set.add(j)
-                    x = i
-                    y = j
-                    while x < len(matrix) - 1:
-                        matrix[x][j] = 0
-                        x += 1
-                    while y < len(matrix[i]) - 1:
-                        matrix[i][y] = 0
-                        y += 1
-                    
+                i_set.add(i)
+                j_set.add(j)
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if i in i_set or j in j_set:
+                matrix[i][j] = 0
+                
