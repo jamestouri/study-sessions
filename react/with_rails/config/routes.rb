@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     resources :posts
     resources :comments
   end
-  root 'state_pages#root'
+  root 'static_pages#root'
 end
