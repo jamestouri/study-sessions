@@ -1,5 +1,4 @@
 class Api::PostsController < ApplicationController
-  skip_before_action :authenticity_token
   def create
     @post = Post.new(post_params)
     if @post.save

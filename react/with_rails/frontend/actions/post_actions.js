@@ -26,17 +26,22 @@ const deletePost = id => {
   }
 }
 
-export const fetchPosts = () => {
+export const fetchPosts = () => dispatch => {
   return APIUtil.fetchPosts()
     .then(posts => dispatch(receivePosts(posts)))
 }
 
-export const fetchPost = post => {
+export const createPost = post => dispatch => {
+  return PostAPIUtil.createPost(post)
+    .then(post => dispatch(receivePost(post)));
+}
+
+export const fetchPost = post => dispatch =>{
   return APIUtil.fetchPost(post)
     .then(post => dispatch(receivePost))
 }
 
-export const removePost = id => {
+export const removePost = id => dispatch => {
   return APIUtil.removePost(id)
     .then(id => dispatch(deletePost(id)))
 }
