@@ -245,15 +245,32 @@ function (_React$Component) {
 
       return this.props.fetchPosts().then(function (res) {
         return _this2.setState({
-          posts: res.data
+          posts: res
         });
       });
     }
   }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var post = {
+        body: this.state.body,
+        name: this.state.name
+      };
+      this.props.createPost(post);
+    }
+  }, {
     key: "render",
     value: function render() {
-      debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hi");
+      if (!this.state.posts) {
+        return null;
+      }
+
+      var allPosts = Object.values(this.state.posts);
+      var posts = allPosts.map(function (post) {
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, post.body);
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, posts));
     }
   }]);
 

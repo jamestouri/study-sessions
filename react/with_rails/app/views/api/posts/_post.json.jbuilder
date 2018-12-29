@@ -1,1 +1,1 @@
-json.extract! post :body, :name
+json.extract! post, :body, :name

@@ -12,12 +12,31 @@ class PostIndex extends React.Component {
 
   componentDidMount() {
     return this.props.fetchPosts()
-      .then(res => this.setState({posts: res.data}))
+      .then(res => this.setState({posts: res}))
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    const post = {
+      body: this.state.body,
+      name: this.state.name
+    }
+    this.props.createPost(post)
+
   }
   render() {
-    debugger;
+    if (!this.state.posts) {
+      return null;
+    }
+    const allPosts = Object.values(this.state.posts)
+    const posts = allPosts.map(post => {
+      <li>{post.body}</li>
+    })
+
     return(
-      <h1>Hi</h1>
+      <div>
+        <ul>{posts}</ul>
+      </div>
     )
   }
 }
