@@ -32,7 +32,7 @@ export const fetchPosts = () => dispatch => {
 }
 
 export const createPost = post => dispatch => {
-  return PostAPIUtil.createPost(post)
+  return APIUtil.createPost(post)
     .then(post => dispatch(receivePost(post)));
 }
 
